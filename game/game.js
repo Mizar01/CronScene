@@ -54,7 +54,7 @@ function camera_reset_position() {
     // ace3.camera.cameraObj.rotation.y = - Math.PI/4 
     ace3.camera.cameraObj.rotation.x = - Math.PI/8 
     //var sp = tileMapConfig.startTile.obj.position
-    ace3.camera.pivot.position.set(0, 18, 28)
+    ace3.camera.pivot.position.set(0, 0, 38)
     ace3.camera.speed = 0.1
 }
 

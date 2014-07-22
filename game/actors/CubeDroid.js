@@ -1,7 +1,7 @@
 CubeDroid = function() {
     ACE3.Actor3D.call(this);
     this.obj = ACE3.Builder.cube(2, ACE3.Utils.getRandomColor());
-    this.spread = 20
+    this.spread = 70
     this.obj.position = ACE3.Math.randVector3(this.spread)
     this.cooldown = new ACE3.CooldownTimer(beatTime, true)
     this.cooldown2 = new ACE3.CooldownTimer(0.1, false)
@@ -27,6 +27,7 @@ CubeDroid.prototype.run = function() {
     }
     
     this.obj.rotation.y += this.rotSpeed
+    this.obj.rotation.z += this.rotSpeed * 0.8
     
 }
 
