@@ -11,8 +11,12 @@ Physijs.scripts.ammo = 'ammo.js';
 var beatTime = 0.4
 
 var cronLogic = null
+var bgLogic = null
+var camLogic = null
 
 var mem = [] // memory
+var ambientLight = null
+var videoSpread = 70 // spread in all direction from 0,0,0
 
 
 function game_init() {
@@ -20,7 +24,8 @@ function game_init() {
     //ace3.setBGColor(0x000000);
     ace3.setBGColor(0xffffff)
     //ace3.scene.setGravity(new THREE.Vector3( 0, -9.8, 0 ));
-    ace3.scene.add( new THREE.AmbientLight( 0xffffff ) );
+    ambientLight = new THREE.AmbientLight( 0xffffff )
+    ace3.scene.add(ambientLight);
     //ace3.addPostProcessing();
     //ace3.setFog(0.02)
     //mainThemeSound = $("#main_theme").get(0)
@@ -30,17 +35,19 @@ function game_init() {
 
     //test_object = ACE3.TestUtils.makeTestCube(new THREE.Vector3(3,1,-20), 0xff00ff)
     gameManager = ace3.defaultActorManager
-    cronLogic = new CronLogic(); 
+    cronLogic = new CronLogic()
+    bgLogic = new ManualStepLogic()
+    camLogic = new ManualStepLogic()
 
     //DISABLE DEFAULT CAMERA BEHAVIOUR
     //ace3.camera.control = function() {};
 
-    gameManager.registerLogic(cronLogic);
+    gameManager.registerLogic(cronLogic)
+    gameManager.registerLogic(bgLogic)
+    gameManager.registerLogic(camLogic)
 
     //Adjust the pitch of the camera
     camera_reset_position()
-    
-    assignSteps()
     
     gameManager.play()
 }
